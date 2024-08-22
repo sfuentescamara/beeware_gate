@@ -10,6 +10,18 @@ En la siguiente página viene muy bien documentado los primeros pasos para crear
 uno de los principales problemas es que no se puede compilar para iPhone sin un macOS.
 info: https://docs.beeware.org/en/latest/tutorial/tutorial-1.html
 
+Comandos principales:
+Run the app in developer mode
+- briefcase dev
+Creates application
+- briefcase create
+Builds application
+- briefcase build
+Runs application
+- briefcase run
+Builds installer
+- briefcase package
+
 La solución para compilar en en macOS puede ser con Github actions:
 
 ## Usar un Servicio de CI/CD en la Nube (como GitHub Actions o CircleCI)

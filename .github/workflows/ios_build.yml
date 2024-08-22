@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
@@ -34,14 +34,15 @@ jobs:
         . venv/bin/activate
         briefcase build iOS
 
-    - name: Package iOS app
+    - name: Open iOS project in Xcode and build IPA
       run: |
         . venv/bin/activate
-        briefcase package iOS
+        briefcase open iOS
+        xcodebuild -scheme gate -configuration Debug -sdk iphoneos -allowProvisioningUpdates -archivePath build/gate/ios/archive/gate.xcarchive archive
+        xcodebuild -exportArchive -archivePath build/gate/ios/archive/gate.xcarchive -exportPath build/gate/ios/ipa -exportOptionsPlist ExportOptions.plist
 
     - name: Upload IPA as artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: iOS-app
-        path: dist/iOS/
-
+        path: build/gate/ios/ipa/gate.ipa
